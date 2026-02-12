@@ -171,6 +171,10 @@ from .sds_gloves_classification import (
     SDSGlovesClassification,
     SDSGlovesClassificationV2,
 )
+from .scirepeval_biomimicry import SciRepEvalBiomimicryClassification
+from .scirepeval_drsm import SciRepEvalDRSMClassification
+from .scirepeval_fos import SciRepEvalFoSClassification
+from .scirepeval_mesh_descriptors import SciRepEvalMeSHDescriptorsClassification
 from .stanford_cars_classification import StanfordCarsClassification
 from .stl10_classification import STL10Classification
 from .sun397_classification import SUN397Classification
@@ -410,6 +414,10 @@ __all__ = [
     "SDSEyeProtectionClassificationV2",
     "SDSGlovesClassification",
     "SDSGlovesClassificationV2",
+    "SciRepEvalBiomimicryClassification",
+    "SciRepEvalDRSMClassification",
+    "SciRepEvalFoSClassification",
+    "SciRepEvalMeSHDescriptorsClassification",
     "STL10Classification",
     "SUN397Classification",
     "StanfordCarsClassification",
