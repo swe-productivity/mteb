@@ -44,7 +44,7 @@ def _convert_ranking_to_retrieval(
         query_text = _make_text(query.get("title"), query.get("abstract"))
 
         # Add query to corpus and queries
-        corpus_dict[query_id] = {"title": query.get("title", ""), "text": query.get("abstract", "") or ""}
+        corpus_dict[query_id] = {"title": query.get("title", "") or "", "text": query.get("abstract", "") or ""}
         queries_list.append({"id": query_id, "text": query_text})
 
         # Process candidates
@@ -94,7 +94,7 @@ class SciRepEvalHighInfluenceCiteReranking(AbsTaskRetrieval):
         sample_creation="found",
         bibtex_citation=SCIREPEVAL_CITATION,
         prompt={
-            "query": "Given a scientific paper, retrieve highly influential cited papers"
+            "query": "Given a scientific paper title and abstract, retrieve papers that are highly influential citations in the given paper"
         },
     )
 

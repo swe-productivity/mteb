@@ -32,7 +32,7 @@ class SciRepEvalDRSMClassification(AbsTaskClassification):
         modalities=["text"],
         eval_splits=["test"],
         eval_langs=["eng-Latn"],
-        main_score="accuracy",
+        main_score="f1",
         date=("2020-01-01", "2023-12-31"),
         domains=["Academic", "Medical", "Non-fiction", "Written"],
         task_subtypes=["Topic classification"],
@@ -41,15 +41,13 @@ class SciRepEvalDRSMClassification(AbsTaskClassification):
         dialect=[],
         sample_creation="found",
         bibtex_citation=SCIREPEVAL_CITATION,
-        prompt="Classify scientific papers into drug safety-related monitoring categories based on their title and abstract",
+        prompt="Classify a given scientific document",
     )
 
     def dataset_transform(self, num_proc: int = 1):
-        self.dataset = DatasetDict(
-            {"evaluation": self.dataset["evaluation"]}
-        )
+        evaluation = self.dataset["evaluation"]
         # Combine title and abstract into text, use 'class' as label
-        self.dataset = self.dataset.map(
+        evaluation = evaluation.map(
             lambda x: {
                 "text": (x["title"] or "")
                 + ". "
@@ -64,7 +62,15 @@ class SciRepEvalDRSMClassification(AbsTaskClassification):
         )
         self.dataset = DatasetDict(
             {
-                "train": split["train"],
-                "test": split["test"],
+                "train": evaluation.filter(
+                    lambda x: x["label_type"] == "Labeled", num_proc=num_proc
+                ),
+                "test": evaluation.filter(
+                    lambda x: x["label_type"] == "Gold Standard", num_proc=num_proc
+                ),
             }
+        )
+        # Subsample for efficiency
+        self.dataset = self.stratified_subsampling(
+            self.dataset, seed=self.seed, splits=["train", "test"]
         )

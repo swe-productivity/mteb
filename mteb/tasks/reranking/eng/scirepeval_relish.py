@@ -82,7 +82,7 @@ class SciRepEvalRelishReranking(AbsTaskRetrieval):
         modalities=["text"],
         eval_splits=["test"],
         eval_langs=["eng-Latn"],
-        main_score="map_at_1000",
+        main_score="ndcg_at_10",
         date=("2020-01-01", "2023-12-31"),
         domains=["Academic", "Medical", "Non-fiction", "Written"],
         task_subtypes=["Scientific Reranking"],
@@ -92,7 +92,7 @@ class SciRepEvalRelishReranking(AbsTaskRetrieval):
         sample_creation="found",
         bibtex_citation=SCIREPEVAL_CITATION,
         prompt={
-            "query": "Given a biomedical paper, retrieve relevant related papers"
+            "query": "Given a scientific paper title and abstract, retrieve papers that are relevant to the given paper"
         },
     )
 

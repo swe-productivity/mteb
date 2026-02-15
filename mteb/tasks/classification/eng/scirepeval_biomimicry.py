@@ -32,7 +32,7 @@ class SciRepEvalBiomimicryClassification(AbsTaskClassification):
         modalities=["text"],
         eval_splits=["test"],
         eval_langs=["eng-Latn"],
-        main_score="accuracy",
+        main_score="f1",
         date=("2020-01-01", "2023-12-31"),
         domains=["Academic", "Non-fiction", "Written"],
         task_subtypes=["Topic classification"],
@@ -41,7 +41,7 @@ class SciRepEvalBiomimicryClassification(AbsTaskClassification):
         dialect=[],
         sample_creation="found",
         bibtex_citation=SCIREPEVAL_CITATION,
-        prompt="Classify scientific papers as biomimicry-related or not based on their title and abstract",
+        prompt="Classify a given scientific document",
     )
 
     def dataset_transform(self, num_proc: int = 1):
@@ -66,4 +66,8 @@ class SciRepEvalBiomimicryClassification(AbsTaskClassification):
                 "train": split["train"],
                 "test": split["test"],
             }
+        )
+        # Subsample for efficiency
+        self.dataset = self.stratified_subsampling(
+            self.dataset, seed=self.seed, splits=["train", "test"]
         )

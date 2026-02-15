@@ -92,7 +92,7 @@ class SciRepEvalSameAuthorReranking(AbsTaskRetrieval):
         sample_creation="found",
         bibtex_citation=SCIREPEVAL_CITATION,
         prompt={
-            "query": "Given a scientific paper, retrieve other papers by the same author"
+            "query": "Given a scientific paper title and abstract, retrieve papers that have the same author as the given paper"
         },
     )
 
