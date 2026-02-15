@@ -32,7 +32,7 @@ class SciRepEvalMeSHDescriptorsClassification(AbsTaskClassification):
         modalities=["text"],
         eval_splits=["test"],
         eval_langs=["eng-Latn"],
-        main_score="accuracy",
+        main_score="f1",
         date=("2020-01-01", "2023-12-31"),
         domains=["Academic", "Medical", "Non-fiction", "Written"],
         task_subtypes=["Topic classification"],
@@ -41,7 +41,7 @@ class SciRepEvalMeSHDescriptorsClassification(AbsTaskClassification):
         dialect=[],
         sample_creation="found",
         bibtex_citation=SCIREPEVAL_CITATION,
-        prompt="Classify scientific papers by their MeSH descriptor based on title and abstract",
+        prompt="Classify a given scientific document",
     )
 
     def dataset_transform(self, num_proc: int = 1):

@@ -45,7 +45,7 @@ class SciRepEvalSearchRetrieval(AbsTaskRetrieval):
         sample_creation="found",
         bibtex_citation=SCIREPEVAL_CITATION,
         prompt={
-            "query": "Given a search query, retrieve relevant scientific papers"
+            "query": "Given a scientific query, identify relevant scientific documents"
         },
     )
 

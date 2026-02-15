@@ -41,7 +41,7 @@ class SciRepEvalPeerReviewScoreRegression(AbsTaskRegression):
         dialect=[],
         sample_creation="found",
         bibtex_citation=SCIREPEVAL_CITATION,
-        prompt="Predict the peer review score of a scientific paper based on its title and abstract",
+        prompt="Given a scientific document, predict a metric",
     )
 
     def dataset_transform(self, num_proc: int = 1):
@@ -67,4 +67,8 @@ class SciRepEvalPeerReviewScoreRegression(AbsTaskRegression):
                 "train": split["train"],
                 "test": split["test"],
             }
+        )
+        # Subsample for efficiency
+        self.dataset = self.stratified_subsampling(
+            self.dataset, seed=self.seed, splits=["train", "test"]
         )
