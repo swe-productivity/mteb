@@ -43,19 +43,28 @@ def _convert_ranking_to_retrieval(
         query_id = str(query["doc_id"])
         query_text = _make_text(query.get("title"), query.get("abstract"))
 
-        corpus_dict[query_id] = {"title": query.get("title", ""), "text": query.get("abstract", "") or ""}
+        corpus_dict[query_id] = {
+            "title": query.get("title", ""),
+            "text": query.get("abstract", "") or "",
+        }
         queries_list.append({"id": query_id, "text": query_text})
 
         relevant_docs[query_id] = {}
         top_ranked[query_id] = []
         for candidate in row["candidates"]:
             cand_id = str(candidate["doc_id"])
-            corpus_dict[cand_id] = {"title": candidate.get("title", ""), "text": candidate.get("abstract", "") or ""}
+            corpus_dict[cand_id] = {
+                "title": candidate.get("title", ""),
+                "text": candidate.get("abstract", "") or "",
+            }
             relevant_docs[query_id][cand_id] = int(candidate.get("score", 0))
             top_ranked[query_id].append(cand_id)
 
     corpus = Dataset.from_list(
-        [{"id": k, "title": v["title"], "text": v["text"]} for k, v in corpus_dict.items()]
+        [
+            {"id": k, "title": v["title"], "text": v["text"]}
+            for k, v in corpus_dict.items()
+        ]
     )
     queries = Dataset.from_list(queries_list)
 

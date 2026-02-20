@@ -45,15 +45,11 @@ class SciRepEvalBiomimicryClassification(AbsTaskClassification):
     )
 
     def dataset_transform(self, num_proc: int = 1):
-        self.dataset = DatasetDict(
-            {"evaluation": self.dataset["evaluation"]}
-        )
+        self.dataset = DatasetDict({"evaluation": self.dataset["evaluation"]})
         # Combine title and abstract into text
         self.dataset = self.dataset.map(
             lambda x: {
-                "text": (x["title"] or "")
-                + ". "
-                + (x["abstract"] or ""),
+                "text": (x["title"] or "") + ". " + (x["abstract"] or ""),
             },
             num_proc=num_proc,
         )

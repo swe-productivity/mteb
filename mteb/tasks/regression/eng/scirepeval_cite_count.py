@@ -48,9 +48,7 @@ class SciRepEvalCiteCountRegression(AbsTaskRegression):
         # Combine title and abstract into text, use log_citations as value
         self.dataset = self.dataset.map(
             lambda x: {
-                "text": (x["title"] or "")
-                + ". "
-                + (x["abstract"] or ""),
+                "text": (x["title"] or "") + ". " + (x["abstract"] or ""),
                 "value": float(x["log_citations"]),
             },
             num_proc=num_proc,

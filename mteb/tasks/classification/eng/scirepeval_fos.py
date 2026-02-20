@@ -48,9 +48,7 @@ class SciRepEvalFoSClassification(AbsTaskMultilabelClassification):
         # Combine title and abstract into text, rename labels to label
         self.dataset = self.dataset.map(
             lambda x: {
-                "text": (x["title"] or "")
-                + ". "
-                + (x["abstract"] or ""),
+                "text": (x["title"] or "") + ". " + (x["abstract"] or ""),
                 "label": x["labels"],
             },
             num_proc=num_proc,

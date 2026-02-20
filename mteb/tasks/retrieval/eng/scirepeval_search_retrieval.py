@@ -86,9 +86,7 @@ class SciRepEvalSearchRetrieval(AbsTaskRetrieval):
                 title = candidate.get("title", "") or ""
                 abstract = candidate.get("abstract", "") or ""
                 corpus_dict[cand_id] = {"title": title, "text": abstract}
-                relevant_docs[query_id][cand_id] = int(
-                    candidate.get("score", 0)
-                )
+                relevant_docs[query_id][cand_id] = int(candidate.get("score", 0))
 
         corpus = Dataset.from_list(
             [
