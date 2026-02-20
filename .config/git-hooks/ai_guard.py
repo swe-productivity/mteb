@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-Python wrapper for AI indicator guard hooks.
+"""Python wrapper for AI indicator guard hooks.
 Calls the appropriate bash script based on the hook type.
 """
 
@@ -26,7 +25,9 @@ def main():
         hook_script = script_dir / "commit-msg"
         # For commit-msg, we need to pass the commit message file
         if len(sys.argv) < 3:
-            print("Error: commit-msg hook requires message file argument", file=sys.stderr)
+            print(
+                "Error: commit-msg hook requires message file argument", file=sys.stderr
+            )
             sys.exit(1)
         commit_msg_file = sys.argv[2]
     else:
@@ -40,15 +41,9 @@ def main():
     # Call the hook script
     try:
         if hook_type == "commit-msg":
-            result = subprocess.run(
-                [str(hook_script), commit_msg_file],
-                check=False
-            )
+            result = subprocess.run([str(hook_script), commit_msg_file], check=False)
         else:
-            result = subprocess.run(
-                [str(hook_script)],
-                check=False
-            )
+            result = subprocess.run([str(hook_script)], check=False)
         sys.exit(result.returncode)
     except Exception as e:
         print(f"Error running hook: {e}", file=sys.stderr)
