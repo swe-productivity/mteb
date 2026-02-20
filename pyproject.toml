@@ -408,6 +408,7 @@ extend-ignore-words-re = [
     "Ond",
     "Mehta",
     "Parth",
+    "Iz",
     # languages/bibtext artifacts
     "ba",
     "creen",

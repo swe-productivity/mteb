@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Python wrapper for AI indicator guard hooks.
+
 Calls the appropriate bash script based on the hook type.
 """
 
@@ -9,6 +10,7 @@ from pathlib import Path
 
 
 def main():
+    """Main entry point for the AI guard hook wrapper."""
     if len(sys.argv) < 2:
         print("Usage: ai_guard.py <pre-commit|commit-msg>", file=sys.stderr)
         sys.exit(1)
