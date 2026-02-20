@@ -45,9 +45,7 @@ class SciRepEvalHIndexRegression(AbsTaskRegression):
     )
 
     def dataset_transform(self, num_proc: int = 1):
-        self.dataset = DatasetDict(
-            {"evaluation": self.dataset["evaluation"]}
-        )
+        self.dataset = DatasetDict({"evaluation": self.dataset["evaluation"]})
         # Filter out rows with missing hIndex and combine title+abstract
         # hIndex is a list like ['Author Name', '75'] where second element is the score
         self.dataset = self.dataset.filter(
@@ -58,9 +56,7 @@ class SciRepEvalHIndexRegression(AbsTaskRegression):
         )
         self.dataset = self.dataset.map(
             lambda x: {
-                "text": (x["title"] or "")
-                + ". "
-                + (x["abstract"] or ""),
+                "text": (x["title"] or "") + ". " + (x["abstract"] or ""),
                 "value": float(x["hIndex"][1]),
             },
             num_proc=num_proc,

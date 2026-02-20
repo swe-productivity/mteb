@@ -45,15 +45,11 @@ class SciRepEvalPeerReviewScoreRegression(AbsTaskRegression):
     )
 
     def dataset_transform(self, num_proc: int = 1):
-        self.dataset = DatasetDict(
-            {"evaluation": self.dataset["evaluation"]}
-        )
+        self.dataset = DatasetDict({"evaluation": self.dataset["evaluation"]})
         # Combine title and abstract into text, use mean_rating as value
         self.dataset = self.dataset.map(
             lambda x: {
-                "text": (x["title"] or "")
-                + ". "
-                + (x["abstract"] or ""),
+                "text": (x["title"] or "") + ". " + (x["abstract"] or ""),
                 "value": float(x["mean_rating"]),
             },
             num_proc=num_proc,

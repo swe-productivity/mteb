@@ -45,9 +45,7 @@ class SciRepEvalTweetMentionsRegression(AbsTaskRegression):
     )
 
     def dataset_transform(self, num_proc: int = 1):
-        self.dataset = DatasetDict(
-            {"evaluation": self.dataset["evaluation"]}
-        )
+        self.dataset = DatasetDict({"evaluation": self.dataset["evaluation"]})
         # Filter rows with missing abstracts and combine title+abstract
         self.dataset = self.dataset.filter(
             lambda x: x["abstract"] is not None,
@@ -55,9 +53,7 @@ class SciRepEvalTweetMentionsRegression(AbsTaskRegression):
         )
         self.dataset = self.dataset.map(
             lambda x: {
-                "text": (x["title"] or "")
-                + ". "
-                + (x["abstract"] or ""),
+                "text": (x["title"] or "") + ". " + (x["abstract"] or ""),
                 "value": float(x["mentions"]),
             },
             num_proc=num_proc,

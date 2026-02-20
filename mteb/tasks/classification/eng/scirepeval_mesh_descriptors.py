@@ -54,9 +54,7 @@ class SciRepEvalMeSHDescriptorsClassification(AbsTaskClassification):
         # Combine title and abstract into text, map descriptor to integer label
         self.dataset = self.dataset.map(
             lambda x: {
-                "text": (x["title"] or "")
-                + ". "
-                + (x["abstract"] or ""),
+                "text": (x["title"] or "") + ". " + (x["abstract"] or ""),
                 "label": descriptor_to_int[x["descriptor"]],
             },
             num_proc=num_proc,

@@ -49,9 +49,7 @@ class SciRepEvalDRSMClassification(AbsTaskClassification):
         # Combine title and abstract into text, use 'class' as label
         evaluation = evaluation.map(
             lambda x: {
-                "text": (x["title"] or "")
-                + ". "
-                + (x["abstract"] or ""),
+                "text": (x["title"] or "") + ". " + (x["abstract"] or ""),
                 "label": x["class"],
             },
             num_proc=num_proc,
