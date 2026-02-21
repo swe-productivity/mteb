@@ -2847,3 +2847,45 @@ KOVIDORE_V2 = Benchmark(
 }
 """,
 )
+
+SCIREPEVAL = Benchmark(
+    name="SciRepEval",
+    display_name="SciRepEval",
+    tasks=get_tasks(
+        tasks=[
+            # Classification
+            "SciRepEvalBiomimicryClassification",
+            "SciRepEvalDRSMClassification",
+            "SciRepEvalFoSClassification",
+            "SciRepEvalMeSHDescriptorsClassification",
+            # Regression
+            "SciRepEvalCiteCountRegression",
+            "SciRepEvalHIndexRegression",
+            "SciRepEvalPeerReviewScoreRegression",
+            "SciRepEvalTweetMentionsRegression",
+            # Reranking
+            "SciRepEvalHighInfluenceCiteReranking",
+            "SciRepEvalSameAuthorReranking",
+            "SciRepEvalRelishReranking",
+            # Retrieval (existing + new)
+            "SCIDOCS",
+            "NFCorpus",
+            "TRECCOVID",
+            "SciRepEvalSearchRetrieval",
+        ],
+        languages=["eng"],
+    ),
+    description="SciRepEval is a multi-format benchmark for scientific document representations with tasks spanning classification, regression, reranking, and retrieval. It supersedes SciDocs and includes 24 challenging tasks across four formats. This benchmark includes tasks available as MTEB datasets from the SciRepEval suite along with existing MTEB tasks that are part of SciRepEval.",
+    reference="https://aclanthology.org/2023.emnlp-main.338/",
+    citation=r"""
+@inproceedings{singh-etal-2023-scirepeval,
+  author = {Singh, Amanpreet and D'Arcy, Mike and Cohan, Arman and Downey, Doug and Feldman, Sergey},
+  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},
+  doi = {10.18653/v1/2023.emnlp-main.338},
+  pages = {5548--5566},
+  title = {{SciRepEval}: A Multi-Format Benchmark for Scientific Document Representations},
+  year = {2023},
+}
+""",
+    contacts=[],
+)
