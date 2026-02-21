@@ -1,3 +1,8 @@
+from .fin_mteb_eng_pair_classification import (
+    HeadlineACPairClassification,
+    HeadlinePDDPairClassification,
+    HeadlinePDUPairClassification,
+)
 from .legal_bench_pc import LegalBenchPC
 from .pub_chem_ai_sentence_paraphrase_pc import PubChemAISentenceParaphrasePC
 from .pub_chem_smilespc import PubChemSMILESPC
@@ -8,6 +13,9 @@ from .twitter_sem_eval2015_pc import TwitterSemEval2015PC
 from .twitter_url_corpus_pc import TwitterURLCorpus
 
 __all__ = [
+    "HeadlineACPairClassification",
+    "HeadlinePDDPairClassification",
+    "HeadlinePDUPairClassification",
     "LegalBenchPC",
     "PubChemAISentenceParaphrasePC",
     "PubChemSMILESPC",

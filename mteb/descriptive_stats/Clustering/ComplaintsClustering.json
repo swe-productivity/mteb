@@ -1,0 +1,57 @@
+{
+    "test": {
+        "num_samples": 569992,
+        "text_statistics": {
+            "total_text_length": 593100696,
+            "min_text_length": 8,
+            "average_text_length": 1040.542140942329,
+            "max_text_length": 31108,
+            "unique_texts": 66585
+        },
+        "image_statistics": null,
+        "label_statistics": {
+            "min_labels_per_text": 1,
+            "average_label_per_text": 1.0,
+            "max_labels_per_text": 1,
+            "unique_labels": 12,
+            "labels": {
+                "Credit reporting, credit repair services, or other personal consumer reports": {
+                    "count": 40000
+                },
+                "Debt collection": {
+                    "count": 80000
+                },
+                "Payday loan": {
+                    "count": 27936
+                },
+                "Credit card": {
+                    "count": 40000
+                },
+                "Credit reporting": {
+                    "count": 80000
+                },
+                "Vehicle loan or lease": {
+                    "count": 40000
+                },
+                "Prepaid card": {
+                    "count": 34896
+                },
+                "Student loan": {
+                    "count": 80000
+                },
+                "Checking or savings account": {
+                    "count": 40000
+                },
+                "Consumer Loan": {
+                    "count": 40000
+                },
+                "Payday loan, title loan, or personal loan": {
+                    "count": 40000
+                },
+                "Payday loan, title loan, personal loan, or advance loan": {
+                    "count": 27160
+                }
+            }
+        }
+    }
+}

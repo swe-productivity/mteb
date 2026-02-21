@@ -8,16 +8,38 @@ from .cmteb_retrieval import (
     T2Retrieval,
     VideoRetrieval,
 )
+from .fin_mteb_zho_retrieval import (
+    AlphaFinRetrieval,
+    DISCFinLLMComputingRetrieval,
+    DISCFinLLMRetrieval,
+    DuEEFinRetrieval,
+    FinEvaEncyclopediaRetrieval,
+    FinEvaRetrieval,
+    FinTruthQARetrieval,
+    SmoothNLPRetrieval,
+    TheGoldmanZhRetrieval,
+    THUCNewsRetrieval,
+)
 from .le_ca_r_dv2_retrieval import LeCaRDv2
 
 __all__ = [
+    "AlphaFinRetrieval",
     "CmedqaRetrieval",
     "CovidRetrieval",
+    "DISCFinLLMComputingRetrieval",
+    "DISCFinLLMRetrieval",
+    "DuEEFinRetrieval",
     "DuRetrieval",
     "EcomRetrieval",
+    "FinEvaEncyclopediaRetrieval",
+    "FinEvaRetrieval",
+    "FinTruthQARetrieval",
     "LeCaRDv2",
     "MMarcoRetrieval",
     "MedicalRetrieval",
+    "SmoothNLPRetrieval",
     "T2Retrieval",
+    "THUCNewsRetrieval",
+    "TheGoldmanZhRetrieval",
     "VideoRetrieval",
 ]

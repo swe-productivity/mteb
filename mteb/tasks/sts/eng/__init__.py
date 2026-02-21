@@ -1,4 +1,6 @@
 from .biosses_sts import BiossesSTS
+from .fin_sts import FinSTSSts
+from .final_sts import FINALSts
 from .humesickr import HUMESICKR
 from .humests12 import HUMESTS12
 from .humests_benchmark import HUMESTSBenchmark
@@ -24,6 +26,8 @@ __all__ = [
     "STS15STS",
     "STS16STS",
     "BiossesSTS",
+    "FINALSts",
+    "FinSTSSts",
     "HUMESTSBenchmark",
     "STS12VisualSTS",
     "STS13VisualSTS",

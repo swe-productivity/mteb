@@ -1,0 +1,39 @@
+{
+    "test": {
+        "num_samples": 38025,
+        "text_statistics": {
+            "total_text_length": 23478340,
+            "min_text_length": 33,
+            "average_text_length": 617.444838921762,
+            "max_text_length": 4250,
+            "unique_texts": 4562
+        },
+        "image_statistics": null,
+        "label_statistics": {
+            "min_labels_per_text": 1,
+            "average_label_per_text": 1.0,
+            "max_labels_per_text": 1,
+            "unique_labels": 6,
+            "labels": {
+                "Aerospace": {
+                    "count": 3390
+                },
+                "Automotive": {
+                    "count": 6850
+                },
+                "Retail": {
+                    "count": 10000
+                },
+                "Banking": {
+                    "count": 5980
+                },
+                "Financial services": {
+                    "count": 8280
+                },
+                "Telecommunications": {
+                    "count": 3525
+                }
+            }
+        }
+    }
+}

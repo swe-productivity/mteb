@@ -1,6 +1,7 @@
 from .aila_casedocs_retrieval import AILACasedocs
 from .aila_statutes_retrieval import AILAStatutes
 from .alpha_nli_retrieval import AlphaNLI
+from .apple_10k_retrieval import Apple10KRetrieval
 from .arc_challenge_retrieval import ARCChallenge
 from .argu_ana_retrieval import ArguAna
 from .bar_exam_qa_retrieval import BarExamQARetrieval
@@ -108,6 +109,7 @@ from .hagrid_retrieval import HagridRetrieval
 from .hateful_memes_i2t_retrieval import HatefulMemesI2TRetrieval
 from .hateful_memes_t2i_retrieval import HatefulMemesT2IRetrieval
 from .hc3_finance_retrieval import HC3FinanceRetrieval
+from .hc3_retrieval import HC3Retrieval
 from .hella_swag_retrieval import HellaSwag
 from .hotpot_qa_retrieval import (
     HotpotQA,
@@ -199,6 +201,7 @@ from .sketchy_i2i_retrieval import SketchyI2IRetrieval
 from .sop_i2i_retrieval import SOPI2IRetrieval
 from .spart_qa_retrieval import SpartQA
 from .stanford_cars_i2i_retrieval import StanfordCarsI2I
+from .tat_qa_retrieval import TATQARetrieval
 from .temp_reason_l1_retrieval import TempReasonL1
 from .temp_reason_l2_context_retrieval import TempReasonL2Context
 from .temp_reason_l2_fact_retrieval import TempReasonL2Fact
@@ -206,11 +209,15 @@ from .temp_reason_l2_pure_retrieval import TempReasonL2Pure
 from .temp_reason_l3_context_retrieval import TempReasonL3Context
 from .temp_reason_l3_fact_retrieval import TempReasonL3Fact
 from .temp_reason_l3_pure_retrieval import TempReasonL3Pure
+from .the_goldman_en_retrieval import TheGoldmanEnRetrieval
 from .topi_ocqa_retrieval import TopiOCQARetrieval, TopiOCQARetrievalHardNegatives
 from .touche2020_retrieval import Touche2020, Touche2020v3Retrieval
+from .trade_the_event_encyclopedia_retrieval import TradeTheEventEncyclopediaRetrieval
+from .trade_the_event_news_retrieval import TradeTheEventNewsRetrieval
 from .treccovid_retrieval import TRECCOVID
 from .trecdl_retrieval import TRECDL2019, TRECDL2020
 from .tu_berlin_t2i_retrieval import TUBerlinT2IRetrieval
+from .us_news_retrieval import USNewsRetrieval
 from .vidore_bench_retrieval import (
     VidoreArxivQARetrieval,
     VidoreDocVQARetrieval,
@@ -247,6 +254,7 @@ __all__ = [
     "AILAStatutes",
     "ARCChallenge",
     "AlphaNLI",
+    "Apple10KRetrieval",
     "ArguAna",
     "BIRCOArguAnaReranking",
     "BIRCOClinicalTrialReranking",
@@ -346,6 +354,7 @@ __all__ = [
     "GLDv2I2TRetrieval",
     "GovReportRetrieval",
     "HC3FinanceRetrieval",
+    "HC3Retrieval",
     "HagridRetrieval",
     "HatefulMemesI2TRetrieval",
     "HatefulMemesT2IRetrieval",
@@ -428,6 +437,7 @@ __all__ = [
     "SketchyI2IRetrieval",
     "SpartQA",
     "StanfordCarsI2I",
+    "TATQARetrieval",
     "TUBerlinT2IRetrieval",
     "TempReasonL1",
     "TempReasonL2Context",
@@ -436,10 +446,14 @@ __all__ = [
     "TempReasonL3Context",
     "TempReasonL3Fact",
     "TempReasonL3Pure",
+    "TheGoldmanEnRetrieval",
     "TopiOCQARetrieval",
     "TopiOCQARetrievalHardNegatives",
     "Touche2020",
     "Touche2020v3Retrieval",
+    "TradeTheEventEncyclopediaRetrieval",
+    "TradeTheEventNewsRetrieval",
+    "USNewsRetrieval",
     "VQA2IT2TRetrieval",
     "VidoreArxivQARetrieval",
     "VidoreDocVQARetrieval",
