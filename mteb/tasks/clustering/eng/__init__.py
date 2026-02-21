@@ -11,6 +11,14 @@ from .built_bench_clustering_p2p import BuiltBenchClusteringP2P
 from .built_bench_clustering_s2s import BuiltBenchClusteringS2S
 from .cifar import CIFAR10Clustering, CIFAR100Clustering
 from .clus_trec_covid import ClusTrecCovid
+from .fin_mteb_eng_clustering import (
+    ComplaintsClustering,
+    FinanceArxivP2PClustering,
+    FinanceArxivS2SClustering,
+    MInDS14EnClustering,
+    PiiClustering,
+    WikiCompany2IndustryClustering,
+)
 from .hume_arxiv_clustering_p2p import HUMEArxivClusteringP2P
 from .hume_reddit_clustering_p2p import HUMERedditClusteringP2P
 from .hume_wiki_cities_clustering import HUMEWikiCitiesClustering
@@ -55,15 +63,20 @@ __all__ = [
     "CIFAR10Clustering",
     "CIFAR100Clustering",
     "ClusTrecCovid",
+    "ComplaintsClustering",
+    "FinanceArxivP2PClustering",
+    "FinanceArxivS2SClustering",
     "HUMEArxivClusteringP2P",
     "HUMERedditClusteringP2P",
     "HUMEWikiCitiesClustering",
     "ImageNet10Clustering",
     "ImageNetDog15Clustering",
+    "MInDS14EnClustering",
     "MedrxivClusteringP2P",
     "MedrxivClusteringP2PFast",
     "MedrxivClusteringS2S",
     "MedrxivClusteringS2SFast",
+    "PiiClustering",
     "RedditClustering",
     "RedditClusteringP2P",
     "RedditFastClusteringP2P",
@@ -76,6 +89,7 @@ __all__ = [
     "TwentyNewsgroupsClustering",
     "TwentyNewsgroupsClusteringFast",
     "WikiCitiesClustering",
+    "WikiCompany2IndustryClustering",
     "WikipediaChemistrySpecialtiesClustering",
     "WikipediaChemistryTopicsClustering",
 ]

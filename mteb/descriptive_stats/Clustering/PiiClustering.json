@@ -1,0 +1,108 @@
+{
+    "test": {
+        "num_samples": 109616,
+        "text_statistics": {
+            "total_text_length": 143318880,
+            "min_text_length": 4,
+            "average_text_length": 1307.4631440665596,
+            "max_text_length": 8088,
+            "unique_texts": 12287
+        },
+        "image_statistics": null,
+        "label_statistics": {
+            "min_labels_per_text": 1,
+            "average_label_per_text": 1.0,
+            "max_labels_per_text": 1,
+            "unique_labels": 29,
+            "labels": {
+                "Corporate Tax Return": {
+                    "count": 5184
+                },
+                "Compliance Certificate": {
+                    "count": 1920
+                },
+                "Customer support conversational log": {
+                    "count": 6080
+                },
+                "Currency Exchange Rate Sheet": {
+                    "count": 2008
+                },
+                "Bank Statement": {
+                    "count": 2048
+                },
+                "Real Estate Loan Agreement": {
+                    "count": 1984
+                },
+                "Payment Confirmation": {
+                    "count": 4080
+                },
+                "EDI": {
+                    "count": 6352
+                },
+                "Financial Aid Application": {
+                    "count": 1944
+                },
+                "Financial Forecast": {
+                    "count": 1944
+                },
+                "Financial Regulatory Compliance Report": {
+                    "count": 1984
+                },
+                "Loan Agreement": {
+                    "count": 2200
+                },
+                "Credit Card Application": {
+                    "count": 2216
+                },
+                "Business Plan": {
+                    "count": 2064
+                },
+                "Financial Data Feed": {
+                    "count": 2080
+                },
+                "Transaction Confirmation": {
+                    "count": 2104
+                },
+                "ISDA Definition": {
+                    "count": 6336
+                },
+                "FIX Protocol": {
+                    "count": 6904
+                },
+                "Policyholder's Report": {
+                    "count": 5784
+                },
+                "Insurance Claim Form": {
+                    "count": 2200
+                },
+                "Dispute Resolution Policy": {
+                    "count": 2112
+                },
+                "Tax Return": {
+                    "count": 4528
+                },
+                "FpML": {
+                    "count": 12736
+                },
+                "CSV": {
+                    "count": 6544
+                },
+                "Mortgage Amortization Schedule": {
+                    "count": 2352
+                },
+                "Health Insurance Claim Form": {
+                    "count": 3880
+                },
+                "Mortgage Contract": {
+                    "count": 2008
+                },
+                "Financial Disclosure Statement": {
+                    "count": 2136
+                },
+                "BAI Format": {
+                    "count": 5904
+                }
+            }
+        }
+    }
+}

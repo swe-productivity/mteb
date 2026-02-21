@@ -11,13 +11,19 @@ from .country211_classification import Country211Classification
 from .dbpedia_classification import DBpediaClassification, DBpediaClassificationV2
 from .dtd_classification import DTDClassification
 from .emotion_classification import EmotionClassification, EmotionClassificationV2
+from .esg_classification import ESGClassification
 from .euro_sat_classification import EuroSATClassification
 from .fer2013_classification import FER2013Classification
 from .fgvc_aircraft_classification import FGVCAircraftClassification
+from .fi_qa_absa_classification import FiQAABSAClassification
+from .fin_sent_classification import FinSentClassification
+from .financial_fraud_classification import FinancialFraudClassification
 from .financial_phrasebank_classification import (
     FinancialPhrasebankClassification,
     FinancialPhrasebankClassificationV2,
 )
+from .fls_classification import FLSClassification
+from .fomc_classification import FOMCClassification
 from .food101_classification import Food101Classification
 from .frenk_en_classification import FrenkEnClassification, FrenkEnClassificationV2
 from .gtsrb_classification import GTSRBClassification
@@ -171,6 +177,7 @@ from .sds_gloves_classification import (
     SDSGlovesClassification,
     SDSGlovesClassificationV2,
 )
+from .semeval2017_classification import SemEval2017ClassificationFinance
 from .stanford_cars_classification import StanfordCarsClassification
 from .stl10_classification import STL10Classification
 from .sun397_classification import SUN397Classification
@@ -324,11 +331,17 @@ __all__ = [
     "Diversity4LegalBenchClassification",
     "Diversity5LegalBenchClassification",
     "Diversity6LegalBenchClassification",
+    "ESGClassification",
     "EmotionClassification",
     "EmotionClassificationV2",
     "EuroSATClassification",
     "FER2013Classification",
     "FGVCAircraftClassification",
+    "FLSClassification",
+    "FOMCClassification",
+    "FiQAABSAClassification",
+    "FinSentClassification",
+    "FinancialFraudClassification",
     "FinancialPhrasebankClassification",
     "FinancialPhrasebankClassificationV2",
     "Food101Classification",
@@ -412,6 +425,7 @@ __all__ = [
     "SDSGlovesClassificationV2",
     "STL10Classification",
     "SUN397Classification",
+    "SemEval2017ClassificationFinance",
     "StanfordCarsClassification",
     "TelemarketingSalesRuleLegalBenchClassification",
     "TextualismToolDictionariesLegalBenchClassification",

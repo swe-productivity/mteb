@@ -1,0 +1,63 @@
+{
+    "test": {
+        "num_samples": 84838,
+        "text_statistics": {
+            "total_text_length": 2170636,
+            "min_text_length": 4,
+            "average_text_length": 25.58565737051793,
+            "max_text_length": 164,
+            "unique_texts": 481
+        },
+        "image_statistics": null,
+        "label_statistics": {
+            "min_labels_per_text": 1,
+            "average_label_per_text": 1.0,
+            "max_labels_per_text": 1,
+            "unique_labels": 14,
+            "labels": {
+                "JOINT_ACCOUNT": {
+                    "count": 6084
+                },
+                "ADDRESS": {
+                    "count": 6591
+                },
+                "ATM_LIMIT": {
+                    "count": 6084
+                },
+                "ABROAD": {
+                    "count": 6422
+                },
+                "PAY_BILL": {
+                    "count": 5746
+                },
+                "APP_ERROR": {
+                    "count": 4732
+                },
+                "FREEZE": {
+                    "count": 5070
+                },
+                "CASH_DEPOSIT": {
+                    "count": 6253
+                },
+                "DIRECT_DEBIT": {
+                    "count": 5915
+                },
+                "LATEST_TRANSACTIONS": {
+                    "count": 6591
+                },
+                "HIGH_VALUE_PAYMENT": {
+                    "count": 5577
+                },
+                "BUSINESS_LOAN": {
+                    "count": 6422
+                },
+                "CARD_ISSUES": {
+                    "count": 6760
+                },
+                "BALANCE": {
+                    "count": 6591
+                }
+            }
+        }
+    }
+}

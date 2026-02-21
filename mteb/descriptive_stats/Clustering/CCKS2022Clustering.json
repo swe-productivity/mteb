@@ -1,0 +1,48 @@
+{
+    "test": {
+        "num_samples": 42920,
+        "text_statistics": {
+            "total_text_length": 2936290,
+            "min_text_length": 6,
+            "average_text_length": 68.41309412861138,
+            "max_text_length": 1108,
+            "unique_texts": 7997
+        },
+        "image_statistics": null,
+        "label_statistics": {
+            "min_labels_per_text": 1,
+            "average_label_per_text": 1.0,
+            "max_labels_per_text": 1,
+            "unique_labels": 9,
+            "labels": {
+                "\u4fe1\u606f\u6cc4\u9732": {
+                    "count": 5870
+                },
+                "\u5b9e\u9645\u63a7\u5236\u4eba\u6d89\u8bc9\u4ef2\u88c1": {
+                    "count": 3900
+                },
+                "\u91cd\u5927\u8d54\u4ed8": {
+                    "count": 3520
+                },
+                "\u76c8\u5229\u80fd\u529b\u4e0b\u964d": {
+                    "count": 5000
+                },
+                "\u4ea4\u6613\u5f02\u5e38": {
+                    "count": 4685
+                },
+                "\u80a1\u7968\u8f6c\u8ba9-\u80a1\u6743\u53d7\u8ba9": {
+                    "count": 5000
+                },
+                "\u80a1\u4e1c\u51cf\u6301": {
+                    "count": 4945
+                },
+                "\u9ad8\u5c42\u53d8\u66f4": {
+                    "count": 5000
+                },
+                "\u7834\u4ea7\u6e05\u7b97": {
+                    "count": 5000
+                }
+            }
+        }
+    }
+}
