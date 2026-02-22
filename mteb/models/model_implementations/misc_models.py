@@ -1624,36 +1624,6 @@ avsolatorio__gist_small_embedding_v0 = ModelMeta(
     primaryClass={cs.LG}
 }""",
 )
-bigscience__sgpt_bloom_7b1_msmarco = ModelMeta(
-    name="bigscience/sgpt-bloom-7b1-msmarco",
-    model_type=["dense"],
-    revision="dc579f3d2d5a0795eba2049e16c3e36c74007ad3",
-    release_date="2022-08-26",
-    languages=None,
-    loader=sentence_transformers_loader,
-    n_parameters=None,
-    n_embedding_parameters=1_026_793_472,
-    memory_usage_mb=None,
-    max_tokens=None,
-    embed_dim=4096,
-    license=None,
-    open_weights=True,
-    public_training_code=None,
-    public_training_data=None,
-    framework=["PyTorch", "Sentence Transformers"],
-    reference="https://huggingface.co/bigscience/sgpt-bloom-7b1-msmarco",
-    similarity_fn_name=ScoringFunction.COSINE,
-    use_instructions=None,
-    training_datasets=None,
-    adapted_from="/gpfsscratch/rech/six/commun/commun/experiments/muennighoff/bloomckpt/6b3/bloom-7b1",
-    superseded_by=None,
-    citation="""@article{muennighoff2022sgpt,
-  title={SGPT: GPT Sentence Embeddings for Semantic Search},
-  author={Muennighoff, Niklas},
-  journal={arXiv preprint arXiv:2202.08904},
-  year={2022}
-}""",
-)
 aari1995__german_semantic_sts_v2 = ModelMeta(
     name="aari1995/German_Semantic_STS_V2",
     model_type=["dense"],
