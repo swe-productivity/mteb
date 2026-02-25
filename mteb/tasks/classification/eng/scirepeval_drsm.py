@@ -54,10 +54,6 @@ class SciRepEvalDRSMClassification(AbsTaskClassification):
             },
             num_proc=num_proc,
         )
-        # Split evaluation into train and test
-        split = self.dataset["evaluation"].train_test_split(
-            test_size=0.5, seed=self.seed
-        )
         self.dataset = DatasetDict(
             {
                 "train": evaluation.filter(
@@ -67,6 +63,11 @@ class SciRepEvalDRSMClassification(AbsTaskClassification):
                     lambda x: x["label_type"] == "Gold Standard", num_proc=num_proc
                 ),
             }
+        )
+        # Remove texts from test that appear in train to prevent leakage
+        train_texts = set(self.dataset["train"]["text"])
+        self.dataset["test"] = self.dataset["test"].filter(
+            lambda x: x["text"] not in train_texts, num_proc=num_proc
         )
         # Subsample for efficiency
         self.dataset = self.stratified_subsampling(

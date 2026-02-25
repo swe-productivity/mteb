@@ -62,9 +62,16 @@ class SciRepEvalTweetMentionsRegression(AbsTaskRegression):
         split = self.dataset["evaluation"].train_test_split(
             test_size=0.5, seed=self.seed
         )
+        # Deduplicate train by text to prevent duplicate samples
+        seen: set[str] = set()
+        train_indices = [
+            i
+            for i, text in enumerate(split["train"]["text"])
+            if text not in seen and not seen.add(text)  # type: ignore[func-returns-value]
+        ]
         self.dataset = DatasetDict(
             {
-                "train": split["train"],
+                "train": split["train"].select(train_indices),
                 "test": split["test"],
             }
         )
