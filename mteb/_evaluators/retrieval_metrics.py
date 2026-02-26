@@ -7,7 +7,6 @@ from typing import TYPE_CHECKING, Any
 import numpy as np
 import pandas as pd
 import pytrec_eval
-
 from sklearn.metrics import auc
 
 from mteb.types import RetrievalEvaluationResult

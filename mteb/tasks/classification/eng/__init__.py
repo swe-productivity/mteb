@@ -163,6 +163,10 @@ from .poem_sentiment_classification import (
     PoemSentimentClassificationV2,
 )
 from .resisc45_classification import RESISC45Classification
+from .scirepeval_biomimicry import SciRepEvalBiomimicryClassification
+from .scirepeval_drsm import SciRepEvalDRSMClassification
+from .scirepeval_fos import SciRepEvalFoSClassification
+from .scirepeval_mesh_descriptors import SciRepEvalMeSHDescriptorsClassification
 from .sds_eye_protection_classification import (
     SDSEyeProtectionClassification,
     SDSEyeProtectionClassificationV2,
@@ -171,10 +175,6 @@ from .sds_gloves_classification import (
     SDSGlovesClassification,
     SDSGlovesClassificationV2,
 )
-from .scirepeval_biomimicry import SciRepEvalBiomimicryClassification
-from .scirepeval_drsm import SciRepEvalDRSMClassification
-from .scirepeval_fos import SciRepEvalFoSClassification
-from .scirepeval_mesh_descriptors import SciRepEvalMeSHDescriptorsClassification
 from .stanford_cars_classification import StanfordCarsClassification
 from .stl10_classification import STL10Classification
 from .sun397_classification import SUN397Classification
@@ -414,12 +414,12 @@ __all__ = [
     "SDSEyeProtectionClassificationV2",
     "SDSGlovesClassification",
     "SDSGlovesClassificationV2",
+    "STL10Classification",
+    "SUN397Classification",
     "SciRepEvalBiomimicryClassification",
     "SciRepEvalDRSMClassification",
     "SciRepEvalFoSClassification",
     "SciRepEvalMeSHDescriptorsClassification",
-    "STL10Classification",
-    "SUN397Classification",
     "StanfordCarsClassification",
     "TelemarketingSalesRuleLegalBenchClassification",
     "TextualismToolDictionariesLegalBenchClassification",
