@@ -46,6 +46,7 @@ dependencies = [
     "polars>=0.20.22",
     "torch; python_full_version < '3.14'",
     "torch>=2.9.0; python_full_version >= '3.14'",
+    "faiss-cpu>=1.9.0",
 ]
 
 
@@ -455,6 +456,7 @@ BulgarianStoreReviewSentimentClassfication = "BulgarianStoreReviewSentimentClass
 
 [tool.typos.type.py.extend-words]
 wdth = "wdth"
+Fo = "Fo"     # SciRepEvalFoSClassification (Field of Science)
 Allo = "Allo"   # AlloProfClusteringS2S.v2
 # langs/splits
 som = "som"

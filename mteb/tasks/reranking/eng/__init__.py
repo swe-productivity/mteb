@@ -8,6 +8,9 @@ from .mind_small_reranking import MindSmallReranking
 from .multi_swe_bench_reranking import MultiSWEbenchReranking
 from .nev_ir import NevIR
 from .sci_docs_reranking import SciDocsReranking
+from .scirepeval_high_influence_cite import SciRepEvalHighInfluenceCiteReranking
+from .scirepeval_relish import SciRepEvalRelishReranking
+from .scirepeval_same_author import SciRepEvalSameAuthorReranking
 from .stack_overflow_dup_questions import StackOverflowDupQuestions
 from .swe_bench_lite_reranking import SWEbenchLiteReranking
 from .swe_bench_multilingual_reranking import SWEbenchMultilingualRR
@@ -30,6 +33,9 @@ __all__ = [
     "SWEbenchMultilingualRR",
     "SWEbenchVerifiedReranking",
     "SciDocsReranking",
+    "SciRepEvalHighInfluenceCiteReranking",
+    "SciRepEvalRelishReranking",
+    "SciRepEvalSameAuthorReranking",
     "StackOverflowDupQuestions",
     "WebLINXCandidatesReranking",
 ]

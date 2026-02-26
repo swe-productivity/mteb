@@ -163,6 +163,10 @@ from .poem_sentiment_classification import (
     PoemSentimentClassificationV2,
 )
 from .resisc45_classification import RESISC45Classification
+from .scirepeval_biomimicry import SciRepEvalBiomimicryClassification
+from .scirepeval_drsm import SciRepEvalDRSMClassification
+from .scirepeval_fos import SciRepEvalFoSClassification
+from .scirepeval_mesh_descriptors import SciRepEvalMeSHDescriptorsClassification
 from .sds_eye_protection_classification import (
     SDSEyeProtectionClassification,
     SDSEyeProtectionClassificationV2,
@@ -412,6 +416,10 @@ __all__ = [
     "SDSGlovesClassificationV2",
     "STL10Classification",
     "SUN397Classification",
+    "SciRepEvalBiomimicryClassification",
+    "SciRepEvalDRSMClassification",
+    "SciRepEvalFoSClassification",
+    "SciRepEvalMeSHDescriptorsClassification",
     "StanfordCarsClassification",
     "TelemarketingSalesRuleLegalBenchClassification",
     "TextualismToolDictionariesLegalBenchClassification",
