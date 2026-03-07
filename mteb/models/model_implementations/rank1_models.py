@@ -3,10 +3,9 @@ import math
 
 import torch
 from transformers import AutoTokenizer
-from vllm import LLM, SamplingParams
 
+from mteb.models.model_implementations.rerankers_custom import RerankerWrapper
 from mteb.models.model_meta import ModelMeta, ScoringFunction
-from mteb.models.rerankers_custom import RerankerWrapper
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -45,6 +44,8 @@ class Rank1Reranker(RerankerWrapper):
         super().__init__(
             model_name_or_path, batch_size=batch_size, fp_options=fp_options, **kwargs
         )
+
+        from vllm import LLM, SamplingParams
 
         self.context_size = context_size
         self.max_output_tokens = max_output_tokens
@@ -103,6 +104,9 @@ class Rank1Reranker(RerankerWrapper):
             token_counts: The number of tokens in the texts total
             scores: The scores of the texts
         """
+
+        from vllm import SamplingParams
+
         cleaned_texts = []
         for text in generated_texts:
             text = text.rstrip()
@@ -297,10 +301,7 @@ class Rank1Reranker(RerankerWrapper):
                 revised_prompts
             )
             # add to the previous output
-            texts = [
-                prev + f"{new_text}"
-                for prev, new_text in zip(texts, new_texts)
-            ]
+            texts = [prev + f"{new_text}" for prev, new_text in zip(texts, new_texts)]
             scores = new_scores
             token_counts = [
                 prev_token_count + new_token_count
