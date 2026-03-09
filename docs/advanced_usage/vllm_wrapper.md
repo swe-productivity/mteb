@@ -161,3 +161,7 @@ vLLM’s optimizations are primarily designed for and most effective with causal
 :::mteb.models.vllm_wrapper.VllmEncoderWrapper
 
 :::mteb.models.vllm_wrapper.VllmCrossEncoderWrapper
+
+:::mteb.models.vllm_wrapper.VllmGenerationWrapper
+
+

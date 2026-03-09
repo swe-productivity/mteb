@@ -6,6 +6,7 @@ from transformers import AutoTokenizer
 
 from mteb.models.model_implementations.rerankers_custom import RerankerWrapper
 from mteb.models.model_meta import ModelMeta, ScoringFunction
+from mteb.models.vllm_wrapper import VllmGenerationWrapper
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -45,8 +46,6 @@ class Rank1Reranker(RerankerWrapper):
             model_name_or_path, batch_size=batch_size, fp_options=fp_options, **kwargs
         )
 
-        from vllm import LLM, SamplingParams
-
         self.context_size = context_size
         self.max_output_tokens = max_output_tokens
         self.num_gpus = num_gpus
@@ -54,6 +53,17 @@ class Rank1Reranker(RerankerWrapper):
         self.force_rethink = force_rethink
         self.model_name_or_path = model_name_or_path
         self.dataset_prompt = dataset_prompt
+
+        self.wrapper = VllmGenerationWrapper(
+            model=model_name_or_path,
+            tensor_parallel_size=int(num_gpus),
+            trust_remote_code=True,
+            max_model_len=context_size,
+            gpu_memory_utilization=0.9,
+            dtype=fp_options,
+        )
+        self.model = self.wrapper.llm
+        self.SamplingParams = self.wrapper.SamplingParams
 
         # Initialize tokenizer with max length of
         self.tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
@@ -72,15 +82,7 @@ class Rank1Reranker(RerankerWrapper):
             "</think>", add_special_tokens=False
         ).input_ids[-1]
 
-        self.model = LLM(
-            model=model_name_or_path,
-            tensor_parallel_size=int(num_gpus),
-            trust_remote_code=True,
-            max_model_len=context_size,
-            gpu_memory_utilization=0.9,
-            dtype=fp_options,
-        )
-        self.sampling_params = SamplingParams(
+        self.sampling_params = self.SamplingParams(
             temperature=0,
             max_tokens=max_output_tokens,
             logprobs=20,
@@ -105,8 +107,6 @@ class Rank1Reranker(RerankerWrapper):
             scores: The scores of the texts
         """
 
-        from vllm import SamplingParams
-
         cleaned_texts = []
         for text in generated_texts:
             text = text.rstrip()
@@ -121,7 +121,7 @@ class Rank1Reranker(RerankerWrapper):
             for original_prompt, cleaned_text in zip(original_prompts, cleaned_texts)
         ]
 
-        new_sampling_args = SamplingParams(
+        new_sampling_args = self.SamplingParams(
             temperature=0,
             max_tokens=1,
             logprobs=20,
