@@ -1,5 +1,8 @@
+from __future__ import annotations
+
 import logging
 import math
+from typing import TYPE_CHECKING
 
 import torch
 from transformers import AutoTokenizer
@@ -7,6 +10,12 @@ from transformers import AutoTokenizer
 from mteb.models.model_implementations.rerankers_custom import RerankerWrapper
 from mteb.models.model_meta import ModelMeta, ScoringFunction
 from mteb.models.vllm_wrapper import VllmGenerationWrapper
+
+if TYPE_CHECKING:
+    from torch.utils.data import DataLoader
+
+    from mteb.abstasks.task_metadata import TaskMetadata
+    from mteb.types import Array, BatchedInput, PromptType
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -59,7 +68,7 @@ class Rank1Reranker(RerankerWrapper):
             tensor_parallel_size=int(num_gpus),
             trust_remote_code=True,
             max_model_len=context_size,
-            gpu_memory_utilization=0.9,
+            gpu_memory_utilization=0.5,
             dtype=fp_options,
         )
         self.model = self.wrapper.llm
@@ -135,24 +144,46 @@ class Rank1Reranker(RerankerWrapper):
         all_token_counts = []
         all_scores = []
         for i in range(len(outputs)):
+            text = outputs[i].outputs[0].text
+            token_count = len(outputs[i].outputs[0].token_ids)
+
             try:
-                text = outputs[i].outputs[0].text
                 final_logits = outputs[i].outputs[0].logprobs[-1]
-                assert (
-                    self.false_token in final_logits and self.true_token in final_logits
-                ), f"final logits are missing true or false: {final_logits}"
             except Exception as e:
-                print(
-                    f"Error: {e} on fixing error, setting at 0.5 score: {outputs[i].outputs}"
-                )
+                print(f"Error: {e} on getting logprobs, setting score to 0.5")
                 all_scores.append(0.5)
-                all_token_counts.append(len(outputs[i].outputs[0].token_ids))
+                all_token_counts.append(token_count)
                 all_final_texts.append(text)
                 continue
 
-            token_count = len(outputs[i].outputs[0].token_ids)
-            true_logit = final_logits[self.true_token].logprob
-            false_logit = final_logits[self.false_token].logprob
+            has_true = self.true_token in final_logits
+            has_false = self.false_token in final_logits
+
+            if has_true and has_false:
+                true_logit = final_logits[self.true_token].logprob
+                false_logit = final_logits[self.false_token].logprob
+            elif has_true or has_false:
+                # One token is missing from the top-k logprobs. The generated token
+                # is always present; the absent one has a very low probability, so
+                # use (min visible logprob - 10) as a conservative lower bound.
+                floor_logprob = min(lp.logprob for lp in final_logits.values()) - 10.0
+                true_logit = (
+                    final_logits[self.true_token].logprob if has_true else floor_logprob
+                )
+                false_logit = (
+                    final_logits[self.false_token].logprob
+                    if has_false
+                    else floor_logprob
+                )
+            else:
+                print(
+                    f"Neither true nor false token found in logprobs, setting score to 0.5: {final_logits}"
+                )
+                all_scores.append(0.5)
+                all_token_counts.append(token_count)
+                all_final_texts.append(text)
+                continue
+
             true_score = math.exp(true_logit)
             false_score = math.exp(false_logit)
             score = true_score / (true_score + false_score)
@@ -265,25 +296,27 @@ class Rank1Reranker(RerankerWrapper):
         return [s + f"\n{rethink_text}" for s in stripped_texts], just_generated_texts
 
     @torch.inference_mode()
-    def predict(self, input_to_rerank, **kwargs):
-        """This is setup to run with mteb but can be adapted to your purpose"""
-        inputs = list(zip(*input_to_rerank))
-        if len(input_to_rerank[0]) == 2:
-            queries, passages = inputs
-            instructions = None
-        else:
-            queries, passages, instructions = inputs
+    def predict(
+        self,
+        inputs1: DataLoader[BatchedInput],
+        inputs2: DataLoader[BatchedInput],
+        *,
+        task_metadata: TaskMetadata,
+        hf_split: str,
+        hf_subset: str,
+        prompt_type: PromptType | None = None,
+        **kwargs,
+    ) -> Array:
+        queries = [text for batch in inputs1 for text in batch["text"]]
+        instructions = None
+        if "instruction" in inputs1.dataset.features:
+            instructions = [text for batch in inputs1 for text in batch["instruction"]]
+        passages = [text for batch in inputs2 for text in batch["text"]]
 
         if instructions is not None and instructions[0] is not None:
             queries = [
                 f"{q} {i}".strip() if q.strip() != i.strip() else q.strip()
                 for i, q in zip(instructions, queries)
-            ]
-
-        if isinstance(passages[0], dict):
-            passages = [
-                f"{v['title']} {v['text']}" if "title" in v else v["text"]
-                for v in passages
             ]
 
         prompts = [
