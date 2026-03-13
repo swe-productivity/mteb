@@ -327,3 +327,78 @@ class VllmCrossEncoderWrapper(VllmWrapperBase):
         )
         scores = np.array([output.outputs.score for output in outputs])
         return scores
+
+
+class VllmGenerationWrapper:
+    """vLLM wrapper for generation-based models (e.g., Rank1 reasoning reranker).
+
+    Uses the generate runner for text generation, unlike VllmWrapperBase which
+    uses the pooling runner for embedding/classification.
+    """
+
+    def __init__(
+        self,
+        model: str,
+        revision: str | None = None,
+        *,
+        tensor_parallel_size: int = 1,
+        trust_remote_code: bool = True,
+        max_model_len: int | None = None,
+        gpu_memory_utilization: float = 0.9,
+        dtype: Dtype = "auto",
+        **kwargs: Any,
+    ):
+        """Wrapper for vllm generation engine.
+
+        Args:
+            model: Model name or path.
+            revision: The revision of the model to use.
+            tensor_parallel_size: Number of GPUs for tensor parallelism.
+            trust_remote_code: Whether to trust remote code execution when loading.
+            max_model_len: Maximum sequence length (context window).
+            gpu_memory_utilization: Target GPU memory utilization ratio (0.0 to 1.0).
+            dtype: Data type for model weights.
+            **kwargs: Additional arguments to pass to the vllm LLM constructor.
+        """
+        requires_package(
+            self,
+            "vllm",
+            "Rank1 reranker / vLLM generation models",
+            install_instruction="pip install mteb[vllm]",
+        )
+
+        os.environ["VLLM_WORKER_MULTIPROC_METHOD"] = "spawn"
+
+        from vllm import LLM, SamplingParams
+
+        self.llm = LLM(
+            model=model,
+            revision=revision,
+            tensor_parallel_size=tensor_parallel_size,
+            trust_remote_code=trust_remote_code,
+            max_model_len=max_model_len,
+            gpu_memory_utilization=gpu_memory_utilization,
+            dtype=dtype,
+            **kwargs,
+        )
+        self.SamplingParams = SamplingParams
+        atexit.register(self.cleanup)
+
+    def cleanup(self):
+        """Clean up the VLLM distributed runtime environment and release GPU resources."""
+        if self.llm is None:
+            return
+
+        from vllm.distributed import (  # type: ignore[import-not-found]
+            cleanup_dist_env_and_memory,
+        )
+
+        self.llm = None
+        gc.collect()
+        cleanup_dist_env_and_memory()
+
+    def __del__(self):
+        try:
+            self.cleanup()
+        except Exception:
+            pass
